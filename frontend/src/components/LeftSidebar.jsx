@@ -4,9 +4,9 @@ const LeftSidebar = ({ tasks, filter, setFilter, searchTerm, setSearchTerm, sele
   // Filter tasks based on filter and search term
   const filteredTasks = tasks.filter(task => {
     const matchesFilter = filter === 'All' ||
-                          (filter === 'Pending' && task.status === 'Pending') ||
-                          (filter === 'AI Flagged' && task.priority === 'HIGH') ||
-                          (filter === 'Completed' && task.status === 'Completed');
+                          (filter === 'NEW' && task.status === 'NEW') ||
+                          (filter === 'IN_PROGRESS' && task.status === 'IN PROGRESS') ||
+                          (filter === 'COMPLETED' && task.status === 'COMPLETED');
     const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           task.customerName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -24,9 +24,9 @@ const LeftSidebar = ({ tasks, filter, setFilter, searchTerm, setSearchTerm, sele
 
   // Counts for the tabs
   const totalCount = tasks.length;
-  const pendingCount = tasks.filter(t => t.status === 'Pending').length;
-  const aiFlaggedCount = tasks.filter(t => t.priority === 'HIGH').length;
-  const completedCount = tasks.filter(t => t.status === 'Completed').length;
+  const newCount = tasks.filter(t => t.status === 'NEW').length;
+  const inProgressCount = tasks.filter(t => t.status === 'IN PROGRESS').length;
+  const completedCount = tasks.filter(t => t.status === 'COMPLETED').length;
 
   return (
     <aside className="flex-1 w-full min-w-0 flex flex-col gap-space-md">
@@ -35,28 +35,40 @@ const LeftSidebar = ({ tasks, filter, setFilter, searchTerm, setSearchTerm, sele
         {/* Status Tab Buttons */}
         <div className="flex items-center gap-space-xxs bg-surface-container-low p-1 rounded">
           <button
-            className={filter === 'All' ? 'tab-btn active-tab' : 'tab-btn'}
+            className={filter === 'All'
+              ? "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface bg-primary text-on-primary"
+              : "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface text-on-surface-variant"
+            }
             onClick={() => setFilter('All')}
           >
-            ALL <span className="ml-1 px-1.5 py-0.2 rounded font-badge-label text-badge-label" id="tab-count-all">{totalCount}</span>
+            ALL {totalCount}
           </button>
           <button
-            className={filter === 'Pending' ? 'tab-btn active-tab' : 'tab-btn'}
-            onClick={() => setFilter('Pending')}
+            className={filter === 'NEW'
+              ? "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface bg-primary text-on-primary"
+              : "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface text-on-surface-variant"
+            }
+            onClick={() => setFilter('NEW')}
           >
-            PENDING <span className="ml-1 px-1.5 py-0.2 rounded font-badge-label text-badge-label" id="tab-count-pending">{pendingCount}</span>
+            NEW {newCount}
           </button>
           <button
-            className={filter === 'AI Flagged' ? 'tab-btn active-tab' : 'tab-btn'}
-            onClick={() => setFilter('AI Flagged')}
+            className={filter === 'IN_PROGRESS'
+              ? "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface bg-primary text-on-primary"
+              : "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface text-on-surface-variant"
+            }
+            onClick={() => setFilter('IN_PROGRESS')}
           >
-            AI FLAGGED <span className="ml-1 px-1.5 py-0.2 rounded font-badge-label text-badge-label" id="tab-count-ai-flagged">{aiFlaggedCount}</span>
+            IN_PROGRESS {inProgressCount}
           </button>
           <button
-            className={filter === 'Completed' ? 'tab-btn active-tab' : 'tab-btn'}
-            onClick={() => setFilter('Completed')}
+            className={filter === 'COMPLETED'
+              ? "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface bg-primary text-on-primary"
+              : "px-3 py-1 rounded-full text-sm font-medium text-center whitespace-nowrap transition-colors duration-200 hover:bg-surface-container-high hover:text-on-surface text-on-surface-variant"
+            }
+            onClick={() => setFilter('COMPLETED')}
           >
-            COMPLETED <span className="ml-1 px-1.5 py-0.2 rounded font-badge-label text-badge-label" id="tab-count-completed">{completedCount}</span>
+            COMPLETED {completedCount}
           </button>
         </div>
         {/* Search Selector */}

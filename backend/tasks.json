@@ -29,7 +29,7 @@
     "title": "Database optimization",
     "description": "Optimize slow queries in user service",
     "priority": "MEDIUM",
-    "status": "NEW",
+    "status": "COMPLETED",
     "createdAt": "2026-09-03T11:37:15.130233",
     "customerName": "Database Team",
     "customerMessage": "Queries in the user service are taking >5 seconds to execute during peak hours. Need to add indexes and refactor joins.",
