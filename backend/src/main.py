@@ -1,7 +1,8 @@
 import os
 import json
+from contextlib import asynccontextmanager
 from datetime import datetime
-from typing import List, Optional
+from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -10,7 +11,14 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-app = FastAPI(title="Task Management API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Seed sample tasks on first run (replaces deprecated on_event("startup"))
+    if not os.path.exists(DATA_FILE):
+        save_tasks(_sample_tasks())
+    yield
+
+app = FastAPI(title="Task Management API", version="1.0.0", lifespan=lifespan)
 
 # Configure CORS
 app.add_middleware(
@@ -41,6 +49,9 @@ class TaskCreate(BaseModel):
 class TaskUpdate(BaseModel):
     status: str
 
+class PriorityUpdate(BaseModel):
+    priority: str  # HIGH, MEDIUM, LOW
+
 class TaskAnalysis(BaseModel):
     category: str
     priority: str
@@ -69,7 +80,7 @@ def load_tasks() -> List[Task]:
 def save_tasks(tasks: List[Task]):
     """Save tasks to JSON file"""
     with open(DATA_FILE, 'w') as f:
-        json.dump([task.dict() for task in tasks], f, indent=2)
+        json.dump([task.model_dump() for task in tasks], f, indent=2)
 
 def validate_task_status(status: str) -> bool:
     """Validate task status"""
@@ -79,11 +90,9 @@ def validate_task_priority(priority: str) -> bool:
     """Validate task priority"""
     return priority in VALID_PRIORITIES
 
-# Initialize with some sample tasks if file doesn't exist
-@app.on_event("startup")
-async def startup_event():
-    if not os.path.exists(DATA_FILE):
-        sample_tasks = [
+def _sample_tasks() -> List[Task]:
+    """Sample tasks used to seed tasks.json on first run"""
+    return [
             Task(
                 id="1",
                 title="Fix login issue",
@@ -128,8 +137,7 @@ async def startup_event():
                 customerMessage="The legacy billing module is causing delays in invoice generation. Refactor to use the new payment gateway API.",
                 attachments=["module_diagram.vsdx", "test_results.json"]
             )
-        ]
-        save_tasks(sample_tasks)
+    ]
 
 @app.get("/tasks", response_model=List[Task])
 async def get_tasks():
@@ -190,7 +198,7 @@ async def update_task_status(task_id: str, task_update: TaskUpdate):
     return tasks[task_index]
 
 @app.patch("/tasks/{task_id}/priority", response_model=Task)
-async def update_task_priority(task_id: str, priority_update: TaskCreate):
+async def update_task_priority(task_id: str, priority_update: PriorityUpdate):
     """Update task priority"""
     # Validate priority
     if not validate_task_priority(priority_update.priority):
