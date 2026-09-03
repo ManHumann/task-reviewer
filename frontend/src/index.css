@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0');
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'liga';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.task-search {
+  position: relative;
+  width: 100%;
+}
+
+.task-search .material-symbols-outlined {
+  position: absolute;
+  left: 0.625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--search-icon-color, currentColor);
+}
+
+.task-search input {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 2.25rem;
+}
+
+.task-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 7rem;
+}
+
+.task-select.priority-select {
+  min-width: 5.5rem;
+}
+
+.task-select select {
+  width: 100%;
+  padding-right: 1.75rem;
+}
+
+.task-select .material-symbols-outlined {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.task-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.task-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .task-card-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

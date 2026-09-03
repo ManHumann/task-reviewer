@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "title": "Fix login issue",
+    "description": "Users unable to login after password reset",
+    "priority": "P1",
+    "status": "Pending",
+    "createdAt": "2026-09-03T11:37:15.130199",
+    "customerName": "North America Banking",
+    "customerMessage": "Customers report being unable to login to their online banking portal after password reset. Error message: 'Invalid credentials'.",
+    "attachments": [
+      "screenshot_login_error.png",
+      "logs.txt"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Update documentation",
+    "description": "API documentation needs updating for new endpoints",
+    "priority": "MEDIUM",
+    "status": "Pending",
+    "createdAt": "2026-09-03T11:37:15.130217",
+    "customerName": "Internal Team",
+    "customerMessage": "The API documentation for the new /v2/tasks endpoints is missing or outdated. Please update with examples and error codes.",
+    "attachments": []
+  },
+  {
+    "id": "3",
+    "title": "Database optimization",
+    "description": "Optimize slow queries in user service",
+    "priority": "P3",
+    "status": "In Review",
+    "createdAt": "2026-09-03T11:37:15.130233",
+    "customerName": "Database Team",
+    "customerMessage": "Queries in the user service are taking >5 seconds to execute during peak hours. Need to add indexes and refactor joins.",
+    "attachments": [
+      "query_explain_plan.pdf"
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Refactor legacy module",
+    "description": "Refactor the billing module for better performance",
+    "priority": "P4",
+    "status": "Completed",
+    "createdAt": "2026-09-03T11:37:15.130237",
+    "customerName": "Billing Department",
+    "customerMessage": "The legacy billing module is causing delays in invoice generation. Refactor to use the new payment gateway API.",
+    "attachments": [
+      "module_diagram.vsdx",
+      "test_results.json"
+    ]
+  }
+]
