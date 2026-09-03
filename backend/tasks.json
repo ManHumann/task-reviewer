@@ -3,8 +3,8 @@
     "id": "1",
     "title": "Fix login issue",
     "description": "Users unable to login after password reset",
-    "priority": "P1",
-    "status": "Pending",
+    "priority": "HIGH",
+    "status": "Completed",
     "createdAt": "2026-09-03T11:37:15.130199",
     "customerName": "North America Banking",
     "customerMessage": "Customers report being unable to login to their online banking portal after password reset. Error message: 'Invalid credentials'.",
@@ -17,7 +17,7 @@
     "id": "2",
     "title": "Update documentation",
     "description": "API documentation needs updating for new endpoints",
-    "priority": "MEDIUM",
+    "priority": "LOW",
     "status": "Pending",
     "createdAt": "2026-09-03T11:37:15.130217",
     "customerName": "Internal Team",
@@ -50,5 +50,93 @@
       "module_diagram.vsdx",
       "test_results.json"
     ]
+  },
+  {
+    "id": "1788452958001",
+    "title": "Test Task",
+    "description": "Test Description",
+    "priority": "HIGH",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:14:18.001054",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788453650215",
+    "title": "Test Task from API",
+    "description": "Test Description",
+    "priority": "HIGH",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:25:50.215311",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788453662419",
+    "title": "UI Test Task",
+    "description": "Test from UI flow",
+    "priority": "HIGH",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:26:02.419946",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788453866595",
+    "title": "Test Task from Simulated UI",
+    "description": "Testing addTask function",
+    "priority": "HIGH",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:29:26.595525",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788454265252",
+    "title": "Unfilled KYC",
+    "description": "Ram has not filled kyc",
+    "priority": "MEDIUM",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:36:05.252804",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788454287743",
+    "title": "Test Task from Fixed UI",
+    "description": "Testing the fixed addTask function",
+    "priority": "HIGH",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:36:27.743698",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788454291138",
+    "title": "HELLOOOOOOOO",
+    "description": "testing hello",
+    "priority": "MEDIUM",
+    "status": "Completed",
+    "createdAt": "2026-09-03T22:36:31.138684",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
+  },
+  {
+    "id": "1788454351803",
+    "title": "UI Test Task",
+    "description": "Testing form submission",
+    "priority": "MEDIUM",
+    "status": "NEW",
+    "createdAt": "2026-09-03T22:37:31.803687",
+    "customerName": "Unknown Customer",
+    "customerMessage": "No message provided",
+    "attachments": []
   }
 ]

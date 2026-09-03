@@ -39,8 +39,7 @@ function App() {
   };
 
   // Add a new task
-  const addTask = async (e) => {
-    e.preventDefault();
+  const addTask = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -98,8 +97,6 @@ function App() {
   const updateTaskPriority = async (taskId, newPriority) => {
     try {
       await axios.patch(`http://localhost:8000/tasks/${taskId}/priority`, {
-        title: '', // dummy values required by TaskCreate model
-        description: '',
         priority: newPriority
       });
       await fetchTasks(); // Refresh tasks

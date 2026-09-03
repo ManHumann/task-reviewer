@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewTaskModal = ({ taskForm, onTaskFormChange, onAddTask, onCancel, loading }) => {
   return (
-    <div id="new-task-drawer" className="hidden p-space-md rounded bg-surface-container-lowest border border-surface-container-highest shadow-md transition-all flex flex-col gap-space-md">
+    <div id="new-task-drawer" className="p-space-md rounded bg-surface-container-lowest border border-surface-container-highest shadow-md transition-all flex flex-col gap-space-md z-[9999]">
       <div className="flex items-center justify-between border-b border-surface-container pb-space-xs">
         <div className="flex items-center gap-space-xs">
           <span className="material-symbols-outlined text-primary text-[20px]">add_task</span>
@@ -71,7 +71,8 @@ const NewTaskModal = ({ taskForm, onTaskFormChange, onAddTask, onCancel, loading
           </button>
           <button
             type="submit"
-            className="px-space-md py-1.5 rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-container shadow-sm transition-all disabled={loading}"
+            disabled={loading}
+            className="px-space-md py-1.5 rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-container shadow-sm transition-all"
           >
             {loading ? 'Adding...' : 'Create Task'}
           </button>

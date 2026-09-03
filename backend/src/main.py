@@ -34,8 +34,8 @@ class Task(BaseModel):
     id: str
     title: str
     description: str
-    priority: str  # HIGH, MEDIUM, LOW
-    status: str    # NEW, IN_PROGRESS, COMPLETED
+    priority: str  # LOW, MEDIUM, HIGH
+    status: str    # Pending, In Review, Escalated, Completed
     createdAt: str
     customerName: str
     customerMessage: str
@@ -59,8 +59,8 @@ class TaskAnalysis(BaseModel):
     recommendedAction: str
 
 # Valid values
-VALID_STATUSES = {"NEW", "IN_PROGRESS", "COMPLETED"}
-VALID_PRIORITIES = {"HIGH", "MEDIUM", "LOW"}
+VALID_STATUSES = {"Pending", "In Review", "Escalated", "Completed"}
+VALID_PRIORITIES = {"LOW", "MEDIUM", "HIGH"}
 
 # Storage file
 DATA_FILE = "tasks.json"
@@ -245,7 +245,7 @@ async def analyse_task(task_id: str):
 
         # Configure Gemini
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-3.6-flash')
 
         # Create prompt for task analysis
         prompt = f"""
