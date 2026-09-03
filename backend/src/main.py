@@ -35,7 +35,7 @@ class Task(BaseModel):
     title: str
     description: str
     priority: str  # LOW, MEDIUM, HIGH
-    status: str    # Pending, In Review, Escalated, Completed
+    status: str    # NEW, IN PROGRESS, COMPLETED
     createdAt: str
     customerName: str
     customerMessage: str
@@ -59,7 +59,7 @@ class TaskAnalysis(BaseModel):
     recommendedAction: str
 
 # Valid values
-VALID_STATUSES = {"Pending", "In Review", "Escalated", "Completed"}
+VALID_STATUSES = {"NEW", "IN PROGRESS", "COMPLETED"}
 VALID_PRIORITIES = {"LOW", "MEDIUM", "HIGH"}
 
 # Storage file
@@ -120,7 +120,7 @@ def _sample_tasks() -> List[Task]:
                 title="Database optimization",
                 description="Optimize slow queries in user service",
                 priority="MEDIUM",
-                status="IN_PROGRESS",
+                status="IN PROGRESS",
                 createdAt=datetime.now().isoformat(),
                 customerName="Database Team",
                 customerMessage="Queries in the user service are taking >5 seconds to execute during peak hours. Need to add indexes and refactor joins.",

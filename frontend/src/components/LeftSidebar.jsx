@@ -112,10 +112,9 @@ const LeftSidebar = ({ tasks, filter, setFilter, searchTerm, setSearchTerm, sele
                         }}
                         className="appearance-none bg-surface-container pl-1 pr-3 py-0.5 rounded font-body-sm text-body-sm text-on-surface cursor-pointer focus:outline-none focus:border-primary"
                     >
-                        <option value="Pending">Pending</option>
-                        <option value="In Review">In Review</option>
-                        <option value="Escalated">Escalated</option>
-                        <option value="Completed">Completed</option>
+                        <option value="NEW">NEW</option>
+                        <option value="IN PROGRESS">IN PROGRESS</option>
+                        <option value="COMPLETED">COMPLETED</option>
                     </select>
                     <span className="material-symbols-outlined text-outline text-[16px]" aria-hidden="true">expand_more</span>
                   </div>

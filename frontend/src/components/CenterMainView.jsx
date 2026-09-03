@@ -65,15 +65,6 @@ const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority
         <div className="task-actions flex justify-end space-x-4">
           <button
             onClick={() => {
-              // In a real app, we would call an API to save as draft
-              console.log('Saving draft for task:', selectedTask.id);
-            }}
-            className="px-4 py-2 bg-surface-container text-on-surface font-body-sm text-body-sm hover:bg-surface-container-high transition-colors"
-          >
-            Save Draft
-          </button>
-          <button
-            onClick={() => {
               onUpdateTaskStatus(selectedTask.id, 'COMPLETED');
             }}
             className="px-4 py-2 bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-container shadow-sm transition-all"
