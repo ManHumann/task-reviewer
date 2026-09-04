@@ -1,201 +1,145 @@
-# Task Management System with AI Analysis
+# Task Management Application
 
-A simple task management application built with React frontend and FastAPI backend, featuring Google Gemini AI integration for task analysis.
+This is a full-stack application with a Python/FastAPI backend and a React/Vite frontend.
 
-## Project Overview
+## 📋 Prerequisites
 
-This application demonstrates a full-stack task management system where users can:
-- View and manage tasks
-- Update task statuses
-- Analyze tasks using AI to get categorization, priority recommendations, summaries, and suggested actions
-- Filter tasks by status
+- Backend: Python 3.14+ (with virtual environment)
+- Frontend: Node.js and npm
+- Git (for cloning, but not required for running)
 
-The application follows a clean separation of concerns with JSON file storage for simplicity and uses environment variables for secure API key management.
-
-## Technologies Used
-
-- **Frontend**: React with Vite
-- **Backend**: Python with FastAPI
-- **Data Storage**: JSON file
-- **AI Integration**: Google Gemini API
-- **HTTP Client**: Axios
-- **Testing**: Pytest
-- **Environment Management**: python-dotenv
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-task-management-system/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── TaskList.jsx
-│   │   │   └── TaskItem.jsx
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-├── backend/
-│   ├── src/
-│   │   └── main.py
-│   ├── tests/
-│   │   └── test_task_validation.py
-│   ├── .env.example
-│   ├── pyproject.toml
-│   ├── uv.lock
-│   └── .python-version
-├── progress.md
-└── README.md
+/backend
+  /app
+    __init__.py
+    main.py          # FastAPI app entry point
+    schemas.py       # Pydantic models
+    services.py      # Business logic and data handling
+    routers.py       # API route definitions
+  requirements.txt   # Python dependencies
+  tasks.json         # Data storage (auto-generated)
+  .env               # Environment variables (including GEMINI_API_KEY)
+
+/frontend
+  /src
+    /components
+      LeftSidebar.jsx
+      CenterMainView.jsx
+      RightSidebar.jsx
+      NewTaskModal.jsx
+      TopNavigationBar.jsx
+    App.jsx
+    main.jsx
+  index.html
+  package.json
+  vite.config.js
+  requirements.txt   # Frontend dependencies (npm packages in package==version format)
 ```
 
-## Setup Instructions
+## 🚀 How to Run the Application
 
-### Prerequisites
-
-- Node.js (v24.20.0 or higher)
-- npm (v11.19.0 or higher)
-- Python (3.12.3 or higher)
-- uv (Python package installer)
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Install dependencies:
-   ```bash
-   uv sync
-   ```
-
-3. Configure environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-   Then edit `.env` and add your Gemini API key:
-   ```
-   GEMINI_API_KEY=your_actual_gemini_api_key_here
-   ```
-
-4. Start the backend server:
-   ```bash
-   uv run uvicorn src.main:app --reload
-   ```
-   The API will be available at http://localhost:8000
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-   The application will be available at http://localhost:5173
-
-## API Endpoints
-
-- `GET /tasks` - Retrieve all tasks
-- `PATCH /tasks/{id}/status` - Update task status
-- `POST /tasks/{id}/analyse` - Analyze task with Gemini AI
-
-## Environment Variables
-
-Create a `.env` file in the backend directory with:
-
-```
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-
-See `.env.example` for reference.
-
-## Features Implemented
-
-✅ Task management (view, update status)
-✅ AI-powered task analysis using Google Gemini
-✅ JSON file persistence
-✅ RESTful API design
-✅ React frontend with task filtering
-✅ Error handling for API failures
-✅ Automated backend tests
-✅ Environment-based API key configuration
-✅ CORS configuration for frontend-backend communication
-
-## Error Handling
-
-The application handles various error scenarios gracefully:
-- Backend validation of task status values
-- Gemini API failures (timeouts, invalid responses, network issues)
-- Frontend displays user-friendly error messages
-- Application continues to function even when AI analysis fails
-
-## Testing
-
-Run the backend tests with:
+### 1. Kill Any Existing Processes (Important - Run First)
 ```bash
-cd backend
-.venv/bin/python -m pytest tests/ -v
+# Kill processes on backend and frontend ports
+lsof -ti:8000 | xargs kill -9 2>/dev/null || true; lsof -ti:5173 | xargs kill -9 2>/dev/null || true
+echo "🧹 Cleared ports 8000 (backend) and 5173 (frontend)"
+```
+Install the requirements file , you have to create a virtual python environment for running backend
+
+### 2. Start the Backend Server
+```bash
+# Change to backend directory
+cd to-do-app/backend
+#Create a .env file to store your GEMINI API KEY
+cp .env.example .env
+
+# Start the backend server (with auto-reload)
+.venv/bin/python -m app.main --reload
+```
+- The backend will be available at: http://localhost:8000
+- API documentation: http://localhost:8000/docs
+- The server will automatically reload when you change Python code
+
+### 3. Start the Frontend Server
+```bash
+# In a new terminal tab/window, change to frontend directory
+cd to-do-app/frontend
+
+# Start the frontend development server
+npm run dev -- --port 5173
+```
+- The frontend will be available at: http://localhost:5173
+- The server will automatically reload when you change frontend code
+
+### 4. Use the Application
+- Open your browser to http://localhost:5173
+- You should see the task management interface
+- Click on a task to select it
+- Click the "Analyze with AI" button to get AI analysis for the selected task
+- The AI Triage Terminal panel will show:
+  - Loading state while the request is in-flight
+  - Raw JSON response when successful (in the debug block)
+  - Error details if the request fails
+  - The styled UI with the analysis results
+
+### 5. Verify the API is Working (Optional)
+```bash
+# Test backend health (should return task list)
+curl -s http://localhost:8000/api/tasks | head -3
+
+# Test AI analysis (should return analysis or fallback)
+curl -s -X POST http://localhost:8000/api/tasks/1/analyse | head -3
 ```
 
-Tests cover:
-- Valid task status acceptance
-- Invalid task status rejection
-- Proper error handling for non-existent tasks
+## 🛑 To Stop the Servers
+```bash
+# Kill processes on backend and frontend ports
+lsof -ti:8000 | xargs kill -9 2>/dev/null || true; lsof -ti:5173 | xargs kill -9 2>/dev/null || true
+echo "🛑 Servers stopped"
+```
 
-## Implementation Approach
+## 📝 Important Notes
 
-1. **Backend**: Created FastAPI application with task model, JSON storage, and Gemini integration
-2. **Frontend**: Built React components to display tasks, update statuses, and trigger AI analysis
-3. **Communication**: Used Axios for HTTP requests between frontend and backend
-4. **Security**: Stored API keys in environment variables, never exposed to frontend
-5. **Persistence**: Used JSON file for simple, inspectable data storage
+### Backend
+- The backend uses a modular structure with separate files for schemas, services, and routers
+- The AI analysis endpoint uses the Google Gemini API with proper error handling
+- If the Gemini API quota is exceeded, the backend returns a fallback analysis instead of an error
+- Environment variables are loaded from `.env` (including `GEMINI_API_KEY`)
 
-## AI Integration Details
+### Frontend
+- The frontend now includes a local error boundary in the AI Triage Terminal component
+- The AI Triage Terminal always shows a raw JSON debug block:
+  - Loading state: "Loading..."
+  - Success: Pretty-printed JSON response from the API
+  - Error: Raw error object/message including status code and response body
+- The frontend only triggers AI analysis when the "Analyze with AI" button is clicked (not on task selection)
+- Console logs are added at each step of the fetch lifecycle for debugging
+- The frontend correctly calls backend endpoints with the `/api/` prefix
 
-The Gemini integration follows this flow:
-1. Frontend requests analysis for a specific task
-2. Backend receives request and calls Gemini API with task details
-3. Gemini returns structured analysis (category, priority, summary, recommended action)
-4. Backend returns result to frontend
-5. Frontend displays analysis results alongside task
+### Data Persistence
+- Tasks are stored in `backend/tasks.json` (JSON file)
+- Sample tasks are seeded automatically if the file doesn't exist or is empty
+- The file is updated whenever tasks are created, updated, or deleted
 
-## What Could Be Improved with More Time
+## 🔧 Troubleshooting
 
-1. Add user authentication and authorization
-2. Implement real-time updates using WebSockets
-3. Add more sophisticated task filtering and search
-4. Implement task creation and deletion
-5. Add loading skeletons for better UX
-6. Implement unit tests for frontend components
-7. Add data validation and sanitization
-8. Implement pagination for large task lists
-9. Add more comprehensive error logging
-10. Deploy to production environment with proper monitoring
+### Backend not starting?
+- Check that the virtual environment is activated (though we use the direct path to the Python executable)
+- Verify that the `GEMINI_API_KEY` is set in `.env`
+- Check the backend logs for error messages
 
-## AI Coding Tools Used
+### Frontend not connecting to backend?
+- Verify that the backend is running on port 8000
+- Check that the frontend is making requests to `http://localhost:8000/api/*`
+- Look at the browser's DevTools → Network tab for failed requests
+- Check the frontend console for error messages
 
-- Claude Code (for code generation, review, and implementation guidance)
-- npm and uv for dependency management
-- Vite for frontend development tooling
-- Pytest for backend testing
+### AI Analysis not showing results?
+- Check if the Gemini API quota has been exceeded (backend will return a fallback analysis)
+- Look at the raw JSON debug block in the AI Triage Terminal for the actual response
+- Check the backend logs for any errors during AI analysis
 
-## Code Verification
-
-Generated code was verified through:
-1. Manual testing of all API endpoints
-2. Running the full application stack (frontend + backend)
-3. Running automated backend tests
-4. Verifying error handling scenarios
-5. Checking environment variable usage
-6. Validating JSON file persistence
+## 📄 License
+This project is for educational purposes.
