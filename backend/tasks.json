@@ -4,14 +4,8 @@
     "title": "Fix login issue",
     "description": "Users unable to login after password reset",
     "priority": "HIGH",
-    "status": "IN PROGRESS",
-    "createdAt": "2026-09-03T11:37:15.130199",
-    "customerName": "North America Banking",
-    "customerMessage": "Customers report being unable to login to their online banking portal after password reset. Error message: 'Invalid credentials'.",
-    "attachments": [
-      "screenshot_login_error.png",
-      "logs.txt"
-    ]
+    "status": "COMPLETED",
+    "createdAt": "2026-09-03T11:37:15.130199"
   },
   {
     "id": "2",
@@ -19,10 +13,7 @@
     "description": "API documentation needs updating for new endpoints",
     "priority": "LOW",
     "status": "NEW",
-    "createdAt": "2026-09-03T11:37:15.130217",
-    "customerName": "Internal Team",
-    "customerMessage": "The API documentation for the new /v2/tasks endpoints is missing or outdated. Please update with examples and error codes.",
-    "attachments": []
+    "createdAt": "2026-09-03T11:37:15.130217"
   },
   {
     "id": "3",
@@ -30,12 +21,7 @@
     "description": "Optimize slow queries in user service",
     "priority": "MEDIUM",
     "status": "COMPLETED",
-    "createdAt": "2026-09-03T11:37:15.130233",
-    "customerName": "Database Team",
-    "customerMessage": "Queries in the user service are taking >5 seconds to execute during peak hours. Need to add indexes and refactor joins.",
-    "attachments": [
-      "query_explain_plan.pdf"
-    ]
+    "createdAt": "2026-09-03T11:37:15.130233"
   },
   {
     "id": "4",
@@ -43,13 +29,7 @@
     "description": "Refactor the billing module for better performance",
     "priority": "P4",
     "status": "COMPLETED",
-    "createdAt": "2026-09-03T11:37:15.130237",
-    "customerName": "Billing Department",
-    "customerMessage": "The legacy billing module is causing delays in invoice generation. Refactor to use the new payment gateway API.",
-    "attachments": [
-      "module_diagram.vsdx",
-      "test_results.json"
-    ]
+    "createdAt": "2026-09-03T11:37:15.130237"
   },
   {
     "id": "1788452958001",
@@ -57,43 +37,31 @@
     "description": "Test Description",
     "priority": "HIGH",
     "status": "NEW",
-    "createdAt": "2026-09-03T22:14:18.001054",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:14:18.001054"
   },
   {
     "id": "1788453650215",
     "title": "Test Task from API",
     "description": "Test Description",
     "priority": "HIGH",
-    "status": "NEW",
-    "createdAt": "2026-09-03T22:25:50.215311",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "status": "IN PROGRESS",
+    "createdAt": "2026-09-03T22:25:50.215311"
   },
   {
     "id": "1788453662419",
     "title": "UI Test Task",
     "description": "Test from UI flow",
-    "priority": "HIGH",
-    "status": "NEW",
-    "createdAt": "2026-09-03T22:26:02.419946",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "priority": "LOW",
+    "status": "COMPLETED",
+    "createdAt": "2026-09-03T22:26:02.419946"
   },
   {
     "id": "1788453866595",
     "title": "Test Task from Simulated UI",
     "description": "Testing addTask function",
-    "priority": "HIGH",
+    "priority": "LOW",
     "status": "IN PROGRESS",
-    "createdAt": "2026-09-03T22:29:26.595525",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:29:26.595525"
   },
   {
     "id": "1788454265252",
@@ -101,21 +69,15 @@
     "description": "Ram has not filled kyc",
     "priority": "MEDIUM",
     "status": "NEW",
-    "createdAt": "2026-09-03T22:36:05.252804",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:36:05.252804"
   },
   {
     "id": "1788454287743",
     "title": "Test Task from Fixed UI",
     "description": "Testing the fixed addTask function",
-    "priority": "HIGH",
+    "priority": "LOW",
     "status": "NEW",
-    "createdAt": "2026-09-03T22:36:27.743698",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:36:27.743698"
   },
   {
     "id": "1788454291138",
@@ -123,10 +85,7 @@
     "description": "testing hello",
     "priority": "MEDIUM",
     "status": "COMPLETED",
-    "createdAt": "2026-09-03T22:36:31.138684",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:36:31.138684"
   },
   {
     "id": "1788454351803",
@@ -134,21 +93,15 @@
     "description": "Testing form submission",
     "priority": "MEDIUM",
     "status": "NEW",
-    "createdAt": "2026-09-03T22:37:31.803687",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T22:37:31.803687"
   },
   {
     "id": "1788456999747",
     "title": "Test New Task",
     "description": "Testing new task creation",
-    "priority": "HIGH",
+    "priority": "MEDIUM",
     "status": "COMPLETED",
-    "createdAt": "2026-09-03T23:21:39.747894",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T23:21:39.747894"
   },
   {
     "id": "1788457079173",
@@ -156,9 +109,22 @@
     "description": "this is a test ticket ",
     "priority": "MEDIUM",
     "status": "NEW",
-    "createdAt": "2026-09-03T23:22:59.173427",
-    "customerName": "Unknown Customer",
-    "customerMessage": "No message provided",
-    "attachments": []
+    "createdAt": "2026-09-03T23:22:59.173427"
+  },
+  {
+    "id": "1788493197156",
+    "title": "day-2 test",
+    "description": "this is a test",
+    "priority": "MEDIUM",
+    "status": "NEW",
+    "createdAt": "2026-09-04T09:24:57.156593"
+  },
+  {
+    "id": "1788503772949",
+    "title": "Unfilled KYC",
+    "description": "Customer did not include phone number",
+    "priority": "MEDIUM",
+    "status": "IN PROGRESS",
+    "createdAt": "2026-09-04T12:21:12.949234"
   }
 ]

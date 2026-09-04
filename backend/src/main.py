@@ -37,9 +37,6 @@ class Task(BaseModel):
     priority: str  # LOW, MEDIUM, HIGH
     status: str    # NEW, IN PROGRESS, COMPLETED
     createdAt: str
-    customerName: str
-    customerMessage: str
-    attachments: List[str]
 
 class TaskCreate(BaseModel):
     title: str
@@ -99,10 +96,7 @@ def _sample_tasks() -> List[Task]:
                 description="Users unable to login after password reset",
                 priority="HIGH",
                 status="NEW",
-                createdAt=datetime.now().isoformat(),
-                customerName="North America Banking",
-                customerMessage="Customers report being unable to login to their online banking portal after password reset. Error message: 'Invalid credentials'.",
-                attachments=["screenshot_login_error.png", "logs.txt"]
+                createdAt=datetime.now().isoformat()
             ),
             Task(
                 id="2",
@@ -110,10 +104,7 @@ def _sample_tasks() -> List[Task]:
                 description="API documentation needs updating for new endpoints",
                 priority="MEDIUM",
                 status="NEW",
-                createdAt=datetime.now().isoformat(),
-                customerName="Internal Team",
-                customerMessage="The API documentation for the new /v2/tasks endpoints is missing or outdated. Please update with examples and error codes.",
-                attachments=[]
+                createdAt=datetime.now().isoformat()
             ),
             Task(
                 id="3",
@@ -121,10 +112,7 @@ def _sample_tasks() -> List[Task]:
                 description="Optimize slow queries in user service",
                 priority="MEDIUM",
                 status="IN PROGRESS",
-                createdAt=datetime.now().isoformat(),
-                customerName="Database Team",
-                customerMessage="Queries in the user service are taking >5 seconds to execute during peak hours. Need to add indexes and refactor joins.",
-                attachments=["query_explain_plan.pdf"]
+                createdAt=datetime.now().isoformat()
             ),
             Task(
                 id="4",
@@ -132,10 +120,7 @@ def _sample_tasks() -> List[Task]:
                 description="Refactor the billing module for better performance",
                 priority="LOW",
                 status="COMPLETED",
-                createdAt=datetime.now().isoformat(),
-                customerName="Billing Department",
-                customerMessage="The legacy billing module is causing delays in invoice generation. Refactor to use the new payment gateway API.",
-                attachments=["module_diagram.vsdx", "test_results.json"]
+                createdAt=datetime.now().isoformat()
             )
     ]
 
@@ -241,11 +226,11 @@ async def analyse_task(task_id: str):
         raise HTTPException(status_code=500, detail="Gemini API key not configured")
 
     try:
-        import google.generativeai as genai
+        from google import genai
+        from google.genai import types
 
-        # Configure Gemini
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-3.6-flash')
+        # Initialize the client
+        client = genai.Client(api_key=api_key)
 
         # Create prompt for task analysis
         prompt = f"""
@@ -255,8 +240,6 @@ async def analyse_task(task_id: str):
         Description: {task.description}
         Priority: {task.priority}
         Status: {task.status}
-        Customer Name: {task.customerName}
-        Customer Message: {task.customerMessage}
 
         Please respond with a JSON object containing:
         - category: one of [BUG_REQUEST, FEATURE_REQUEST, DOCUMENT_REQUEST, TECHNICAL_DEBT, OTHER]
@@ -267,8 +250,11 @@ async def analyse_task(task_id: str):
         Respond only with valid JSON.
         """
 
-        # Generate content
-        response = model.generate_content(prompt)
+        # Generate content using the new API
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt
+        )
 
         # Parse the response
         import re

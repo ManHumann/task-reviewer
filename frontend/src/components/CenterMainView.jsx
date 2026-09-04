@@ -25,11 +25,7 @@ const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority
           </div>
         </div>
 
-        <div className="task-meta-grid grid grid-cols-3 gap-4 mb-6">
-          <div className="task-meta-item">
-            <p className="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Customer</p>
-            <p className="text-base font-semibold text-on-surface">{selectedTask.customerName}</p>
-          </div>
+        <div className="task-meta-grid grid grid-cols-2 gap-4 mb-6">
           <div className="task-meta-item">
             <p className="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Priority</p>
             <span className={`px-2 py-1 rounded-full text-sm font-semibold ${getPriorityClass(selectedTask.priority)}`}>
@@ -46,21 +42,6 @@ const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority
           <h3 className="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2">Task Description</h3>
           <p className="text-body-sm text-body-sm text-on-surface-variant">{selectedTask.description}</p>
         </div>
-
-        {selectedTask.attachments.length > 0 && (
-          <div className="attachments-section mb-6">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2">Attachments</h3>
-            <ul className="attachments-list list-disc list-inside space-y-2">
-              {selectedTask.attachments.map((attachment, index) => (
-                <li key={index} className="text-body-sm text-on-surface">
-                  <a href={`/uploads/${attachment}`} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
-                    {attachment}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
 
         <div className="task-actions flex justify-end space-x-4">
           <button

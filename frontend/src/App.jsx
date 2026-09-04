@@ -21,7 +21,6 @@ function App() {
     title: '',
     description: '',
     priority: 'HIGH', // default priority
-    customerName: '',
   });
 
   // Fetch tasks from backend
@@ -29,7 +28,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8000/tasks');
+      const response = await axios.get('http://localhost:8000/api/tasks');
       setTasks(response.data);
     } catch (err) {
       setError('Failed to load tasks: ' + (err.response?.data?.detail || err.message));
@@ -48,7 +47,7 @@ function App() {
         description: newTaskForm.description,
         priority: newTaskForm.priority,
       };
-      const response = await axios.post('http://localhost:8000/tasks', taskData);
+      const response = await axios.post('http://localhost:8000/api/tasks', taskData);
       // Add the new task to the list
       setTasks(prev => [...prev, response.data]);
       // Reset the form and close modal
@@ -56,7 +55,6 @@ function App() {
         title: '',
         description: '',
         priority: 'HIGH',
-        customerName: '',
       });
       setShowAddTaskModal(false);
     } catch (err) {
@@ -66,15 +64,20 @@ function App() {
     }
   };
 
-  // Select a task and trigger AI analysis
+  // Select a task without triggering AI analysis
   const handleTaskSelect = async (taskId) => {
     setSelectedTaskId(taskId);
     const task = tasks.find(t => t.id === taskId);
     setSelectedTask(task);
     setAiAnalysis(null);
+  };
+
+  // Trigger AI analysis for a selected task
+  const handleAnalyseWithAI = async (taskId) => {
+    setAiAnalysis(null);
     setAiLoading(true);
     try {
-      const response = await axios.post(`http://localhost:8000/tasks/${taskId}/analyse`);
+      const response = await axios.post(`http://localhost:8000/api/tasks/${taskId}/analyse`);
       setAiAnalysis(response.data);
     } catch (err) {
       setError('Failed to analyze task: ' + (err.response?.data?.detail || err.message));
@@ -86,7 +89,7 @@ function App() {
   // Update task status
   const updateTaskStatus = async (taskId, newStatus) => {
     try {
-      await axios.patch(`http://localhost:8000/tasks/${taskId}/status`, { status: newStatus });
+      await axios.patch(`http://localhost:8000/api/tasks/${taskId}/status`, { status: newStatus });
       await fetchTasks(); // Refresh tasks
     } catch (err) {
       setError('Failed to update task status: ' + (err.response?.data?.detail || err.message));
@@ -96,7 +99,7 @@ function App() {
   // Update task priority
   const updateTaskPriority = async (taskId, newPriority) => {
     try {
-      await axios.patch(`http://localhost:8000/tasks/${taskId}/priority`, {
+      await axios.patch(`http://localhost:8000/api/tasks/${taskId}/priority`, {
         priority: newPriority
       });
       await fetchTasks(); // Refresh tasks
@@ -114,11 +117,6 @@ function App() {
     if (tasks.length > 0 && !selectedTaskId) {
       setSelectedTaskId(tasks[0].id);
       setSelectedTask(tasks[0]);
-      setAiLoading(true);
-      axios.post(`http://localhost:8000/tasks/${tasks[0].id}/analyse`)
-        .then(response => setAiAnalysis(response.data))
-        .catch(err => setError('Failed to analyze task: ' + (err.response?.data?.detail || err.message)))
-        .finally(() => setAiLoading(false));
     }
   }, [tasks]);
 
@@ -154,7 +152,7 @@ function App() {
                 onTaskSelect={handleTaskSelect}
                 updateTaskStatus={updateTaskStatus}
                 updateTaskPriority={updateTaskPriority}
-                onAnalyseWithAI={handleTaskSelect}
+                onAnalyseWithAI={handleAnalyseWithAI}
               />
             </div>
             {/* CENTER: Task Detail */}

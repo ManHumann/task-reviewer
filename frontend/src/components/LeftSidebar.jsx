@@ -8,8 +8,7 @@ const LeftSidebar = ({ tasks, filter, setFilter, searchTerm, setSearchTerm, sele
                           (filter === 'IN_PROGRESS' && task.status === 'IN PROGRESS') ||
                           (filter === 'COMPLETED' && task.status === 'COMPLETED');
     const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          task.customerName.toLowerCase().includes(searchTerm.toLowerCase());
+                          task.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
