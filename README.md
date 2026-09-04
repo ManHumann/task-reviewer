@@ -47,6 +47,9 @@ lsof -ti:8000 | xargs kill -9 2>/dev/null || true; lsof -ti:5173 | xargs kill -9
 echo "🧹 Cleared ports 8000 (backend) and 5173 (frontend)"
 ```
 Install the requirements file , you have to create a virtual python environment for running backend
+Create using => python3 -m venv .venv
+Activate your environment (if linux use) => source/bin/activate
+install the requirements => pip install -r requirements.txt
 
 ### 2. Start the Backend Server
 ```bash
@@ -55,8 +58,12 @@ cd to-do-app/backend
 #Create a .env file to store your GEMINI API KEY
 cp .env.example .env
 
+
+
 # Start the backend server (with auto-reload)
 .venv/bin/python -m app.main --reload
+or
+activate your virtual machine and run in ~/to-do-app/backend$ python -m app.main --reload
 ```
 - The backend will be available at: http://localhost:8000
 - API documentation: http://localhost:8000/docs
@@ -67,8 +74,11 @@ cp .env.example .env
 # In a new terminal tab/window, change to frontend directory
 cd to-do-app/frontend
 
+#Install Packages
+npm install
+
 # Start the frontend development server
-npm run dev -- --port 5173
+npm run dev -- --host 0.0.0.0 --port 5173
 ```
 - The frontend will be available at: http://localhost:5173
 - The server will automatically reload when you change frontend code
