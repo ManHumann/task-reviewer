@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 import TopNavigationBar from './components/TopNavigationBar';
 import LeftSidebar from './components/LeftSidebar';
 import CenterMainView from './components/CenterMainView';
@@ -30,7 +31,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8000/api/tasks');
+      const response = await axios.get(`${API_BASE_URL}/api/tasks`);
       setTasks(response.data);
     } catch (err) {
       setError('Failed to load tasks: ' + (err.response?.data?.detail || err.message));
@@ -49,7 +50,7 @@ function App() {
         description: newTaskForm.description,
         priority: newTaskForm.priority,
       };
-      const response = await axios.post('http://localhost:8000/api/tasks', taskData);
+      const response = await axios.post(`${API_BASE_URL}/api/tasks`, taskData);
       // Add the new task to the list
       setTasks(prev => [...prev, response.data]);
       // Reset the form and close modal
@@ -82,7 +83,7 @@ function App() {
     setAiError(null);
     setAiLoading(true);
     try {
-      const response = await axios.post(`http://localhost:8000/api/tasks/${taskId}/analyse`);
+      const response = await axios.post(`${API_BASE_URL}/api/tasks/${taskId}/analyse`);
       console.log('[AI] Response received:', response);
       setAiAnalysis({
         ...response.data,
@@ -108,7 +109,7 @@ function App() {
   // Update task status
   const updateTaskStatus = async (taskId, newStatus) => {
     try {
-      await axios.patch(`http://localhost:8000/api/tasks/${taskId}/status`, { status: newStatus });
+      await axios.patch(`${API_BASE_URL}/api/tasks/${taskId}/status`, { status: newStatus });
       await fetchTasks(); // Refresh tasks
     } catch (err) {
       setError('Failed to update task status: ' + (err.response?.data?.detail || err.message));
@@ -118,7 +119,7 @@ function App() {
   // Update task priority
   const updateTaskPriority = async (taskId, newPriority) => {
     try {
-      await axios.patch(`http://localhost:8000/api/tasks/${taskId}/priority`, {
+      await axios.patch(`${API_BASE_URL}/api/tasks/${taskId}/priority`, {
         priority: newPriority
       });
       await fetchTasks(); // Refresh tasks
