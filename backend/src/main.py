@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -54,6 +54,8 @@ class TaskAnalysis(BaseModel):
     priority: str
     summary: str
     recommendedAction: str
+    tokens: List[str] = Field(default_factory=list)
+    shortAction: str = "Review task"
 
 # Valid values
 VALID_STATUSES = {"NEW", "IN PROGRESS", "COMPLETED"}

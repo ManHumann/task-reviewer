@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 
 # Task model
@@ -26,3 +26,5 @@ class TaskAnalysis(BaseModel):
     priority: str
     summary: str
     recommendedAction: str
+    tokens: List[str] = Field(default_factory=list)
+    shortAction: str = "Review task"

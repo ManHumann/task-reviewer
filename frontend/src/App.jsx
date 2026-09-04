@@ -13,6 +13,8 @@ function App() {
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
   const [aiAnalysis, setAiAnalysis] = useState(null);
+  const [aiRawResponse, setAiRawResponse] = useState(null);
+  const [aiError, setAiError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
@@ -74,14 +76,31 @@ function App() {
 
   // Trigger AI analysis for a selected task
   const handleAnalyseWithAI = async (taskId) => {
+    console.log('[AI] Starting analysis for taskId:', taskId);
     setAiAnalysis(null);
+    setAiRawResponse(null);
+    setAiError(null);
     setAiLoading(true);
     try {
       const response = await axios.post(`http://localhost:8000/api/tasks/${taskId}/analyse`);
-      setAiAnalysis(response.data);
+      console.log('[AI] Response received:', response);
+      setAiAnalysis({
+        ...response.data,
+        tokens: Array.isArray(response.data.tokens) ? response.data.tokens : [],
+        shortAction: response.data.shortAction || response.data.recommendedAction || 'Review task',
+      });
+      setAiRawResponse(response.data); // store raw response for debugging
     } catch (err) {
-      setError('Failed to analyze task: ' + (err.response?.data?.detail || err.message));
+      console.error('[AI] Error during analysis:', err);
+      setAiError(err);
+      // Optionally set raw response from error if available
+      if (err.response) {
+        setAiRawResponse(err.response.data || err.response.statusText);
+      } else {
+        setAiRawResponse(String(err));
+      }
     } finally {
+      console.log('[AI] Analysis finished');
       setAiLoading(false);
     }
   };
@@ -165,6 +184,8 @@ function App() {
                 selectedTask={selectedTask}
                 aiAnalysis={aiAnalysis}
                 aiLoading={aiLoading}
+                aiError={aiError}
+                aiRawResponse={aiRawResponse}
                 onExecuteRecommendation={() => {
                   // In a real app, we would call an API to execute the recommendation
                   console.log('Executing recommendation');
