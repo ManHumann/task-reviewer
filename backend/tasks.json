@@ -1,99 +1,11 @@
 [
   {
-    "id": "2",
-    "title": "Update documentation",
-    "description": "API documentation needs updating for new endpoints",
-    "priority": "LOW",
-    "status": "NEW",
-    "createdAt": "2026-09-03T11:37:15.130217"
-  },
-  {
-    "id": "3",
-    "title": "Database optimization",
-    "description": "Optimize slow queries in user service",
-    "priority": "MEDIUM",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T11:37:15.130233"
-  },
-  {
-    "id": "4",
-    "title": "Refactor legacy module",
-    "description": "Refactor the billing module for better performance",
-    "priority": "P4",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T11:37:15.130237"
-  },
-  {
-    "id": "1788453662419",
-    "title": "UI Test Task",
-    "description": "Test from UI flow",
-    "priority": "LOW",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T22:26:02.419946"
-  },
-  {
-    "id": "1788453866595",
-    "title": "Test Task from Simulated UI",
-    "description": "Testing addTask function",
-    "priority": "LOW",
-    "status": "IN PROGRESS",
-    "createdAt": "2026-09-03T22:29:26.595525"
-  },
-  {
     "id": "1788454265252",
     "title": "Unfilled KYC",
     "description": "Ram has not filled kyc",
-    "priority": "MEDIUM",
-    "status": "NEW",
-    "createdAt": "2026-09-03T22:36:05.252804"
-  },
-  {
-    "id": "1788454287743",
-    "title": "Test Task from Fixed UI",
-    "description": "Testing the fixed addTask function",
     "priority": "LOW",
     "status": "NEW",
-    "createdAt": "2026-09-03T22:36:27.743698"
-  },
-  {
-    "id": "1788454291138",
-    "title": "HELLOOOOOOOO",
-    "description": "testing hello",
-    "priority": "MEDIUM",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T22:36:31.138684"
-  },
-  {
-    "id": "1788454351803",
-    "title": "UI Test Task",
-    "description": "Testing form submission",
-    "priority": "MEDIUM",
-    "status": "NEW",
-    "createdAt": "2026-09-03T22:37:31.803687"
-  },
-  {
-    "id": "1788456999747",
-    "title": "Test New Task",
-    "description": "Testing new task creation",
-    "priority": "MEDIUM",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T23:21:39.747894"
-  },
-  {
-    "id": "1788457079173",
-    "title": "test - 2",
-    "description": "this is a test ticket ",
-    "priority": "MEDIUM",
-    "status": "NEW",
-    "createdAt": "2026-09-03T23:22:59.173427"
-  },
-  {
-    "id": "1788493197156",
-    "title": "day-2 test",
-    "description": "this is a test",
-    "priority": "MEDIUM",
-    "status": "NEW",
-    "createdAt": "2026-09-04T09:24:57.156593"
+    "createdAt": "2026-09-03T22:36:05.252804"
   },
   {
     "id": "1788503772949",
@@ -110,5 +22,13 @@
     "priority": "HIGH",
     "status": "NEW",
     "createdAt": "2026-09-04T12:38:27.034465"
+  },
+  {
+    "id": "1788615926837",
+    "title": "Missing Customer Document",
+    "description": "The customer submitted their application but has not provided their latest payslip.",
+    "priority": "MEDIUM",
+    "status": "NEW",
+    "createdAt": "2026-09-05T19:30:26.837362"
   }
 ]
