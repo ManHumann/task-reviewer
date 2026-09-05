@@ -121,7 +121,7 @@ echo "🛑 Servers stopped"
 - Sample tasks are seeded automatically if the file doesn't exist or is empty
 - The file is updated whenever tasks are created, updated, or deleted
 
-## Brief explanation of your approach.
+## Brief explanation of my approach.
 
 - The app is built on React JS as frontend and FastAPI as backend.
 - The app is mostly built on CRUD operations.
