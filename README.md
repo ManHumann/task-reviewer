@@ -143,7 +143,7 @@ echo "🛑 Servers stopped"
 
 ## What I would improve if I had more time.
 
-- Setting up preconditions for completing a task (deleting the task card) — if we were to set a condition which enforced that a task should only be deleted if the task status == completed.
+- Setting up pre-conditions for completing a task (deleting the task card) — if we were to set a condition which enforced that a task should only be deleted if the task status == completed. Then it would minimize accidental deletion of tasks, or even a warning when deleting a task whose status != completed .Any of the mentioned method can be used but is bed applied after further discussion with the development team.
 
 - When analysing with AI, I found that after analysis, when we click on another task or elsewhere, the banner with the AI suggestion collapses. We then have to run the analysis again to see the result for the same task. The state is not persistent, and since an AI model may give a different answer every time we prompt it, prompting again and again will also increase token cost (in the case of the free Gemini model, it may even hit rate limits). Adding persistent data storage to keep the latest analysis result — or even a history of analyses for a particular task — would be a big improvement.
 
