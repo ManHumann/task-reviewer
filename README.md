@@ -46,10 +46,10 @@ This is a full-stack application with a Python/FastAPI backend and a React/Vite 
 lsof -ti:8000 | xargs kill -9 2>/dev/null || true; lsof -ti:5173 | xargs kill -9 2>/dev/null || true
 echo "🧹 Cleared ports 8000 (backend) and 5173 (frontend)"
 ```
-Install the requirements file , you have to create a virtual python environment for running backend
-Create using => python3 -m venv .venv
-Activate your environment (if linux use) => source/bin/activate
-install the requirements => pip install -r requirements.txt
+- Install the requirements file , you have to create a virtual python environment for running backend
+- Create using => python3 -m venv .venv
+- Activate your environment (if linux use) => source/bin/activate
+- install the requirements => pip install -r requirements.txt
 
 ### 2. Start the Backend Server
 ```bash
