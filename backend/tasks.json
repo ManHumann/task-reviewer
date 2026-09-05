@@ -24,14 +24,6 @@
     "createdAt": "2026-09-03T11:37:15.130237"
   },
   {
-    "id": "1788452958001",
-    "title": "Test Task",
-    "description": "Test Description",
-    "priority": "HIGH",
-    "status": "NEW",
-    "createdAt": "2026-09-03T22:14:18.001054"
-  },
-  {
     "id": "1788453662419",
     "title": "UI Test Task",
     "description": "Test from UI flow",

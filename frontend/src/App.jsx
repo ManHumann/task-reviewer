@@ -131,7 +131,7 @@ function App() {
   // Delete task
   const deleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/tasks/${taskId}`);
+      await axios.delete(`${API_BASE_URL}/api/tasks/${taskId}`);
       // Remove the task from the list
       setTasks(prev => prev.filter(task => task.id !== taskId));
       // If the deleted task was selected, clear selection
