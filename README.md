@@ -138,6 +138,7 @@ echo "🛑 Servers stopped"
 - Tasks can be filtered with predefined filters or simply searched.
 - By default, the status of a newly created task is set to "new," and that is immutable.
 - In the task card, the "Complete Task" button in red indicates deletion of the task.
+- Task ID are time stamp based , suitable for simple JSON storage space.
 
 
 ## What I would improve if I had more time.
