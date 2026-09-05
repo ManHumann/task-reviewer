@@ -3,19 +3,16 @@
   1. Run All New Tests (Validation + AI Failure Handling)
 
   # Using the backend's virtual environment Python
-  /home/mann/work/odin/assignmnet/demo-app/backend/.venv/bin/python -m pytest Tests/ -v
+  Have the backend's virtual environment running
 
   2. Run Just the Backend Validation Tests
 
-  /home/mann/work/odin/assignmnet/demo-app/backend/.venv/bin/python -m pytest Tests/test_backend_validation.py -v
+  python -m pytest ~/task-reviewer/Tests/test_backend_validation.py -v
 
   3. Run Just the AI Failure Handling Tests
 
-  /home/mann/work/odin/assignmnet/demo-app/backend/.venv/bin/python -m pytest Tests/test_ai_failure_handling.py -v
+  python -m pytest ~/task-reviewer/Tests/test_ai_failure_handling.py -v
 
-  4. Run Existing Backend Tests (for comparison)
-
-  /home/mann/work/odin/assignmnet/demo-app/backend/.venv/bin/python -m pytest backend/tests/ -v
 
   👀 Where to See the Results
 
