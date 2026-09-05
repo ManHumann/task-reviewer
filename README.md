@@ -54,7 +54,7 @@ install the requirements => pip install -r requirements.txt
 ### 2. Start the Backend Server
 ```bash
 # Change to backend directory
-cd to-do-app/backend
+cd task-reviewer/backend
 #Create a .env file to store your GEMINI API KEY
 cp .env.example .env
 
@@ -63,7 +63,7 @@ cp .env.example .env
 # Start the backend server (with auto-reload)
 .venv/bin/python -m app.main --reload
 or
-activate your virtual machine and run in ~/to-do-app/backend$ python -m app.main --reload
+activate your virtual machine and run in ~/task-reviewer/backend$ python -m app.main --reload
 ```
 - The backend will be available at: http://localhost:8000
 - API documentation: http://localhost:8000/docs
@@ -72,7 +72,7 @@ activate your virtual machine and run in ~/to-do-app/backend$ python -m app.main
 ### 3. Start the Frontend Server
 ```bash
 # In a new terminal tab/window, change to frontend directory
-cd to-do-app/frontend
+cd task-reviewer/frontend
 
 #Install Packages
 npm install
