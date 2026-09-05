@@ -186,3 +186,20 @@ async def analyse_task(task_id: str):
                 status_code=500,
                 detail=f"AI analysis failed: {str(e)}"
             )
+
+
+@router.delete("/tasks/{task_id}")
+async def delete_task(task_id: str):
+    """Delete a task"""
+    tasks = load_tasks()
+    task_index = None
+    for i, task in enumerate(tasks):
+        if task.id == task_id:
+            task_index = i
+            break
+    if task_index is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    # Remove the task
+    del tasks[task_index]
+    save_tasks(tasks)
+    return {"detail": "Task deleted"}

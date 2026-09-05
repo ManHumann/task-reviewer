@@ -128,6 +128,23 @@ function App() {
     }
   };
 
+  // Delete task
+  const deleteTask = async (taskId) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/tasks/${taskId}`);
+      // Remove the task from the list
+      setTasks(prev => prev.filter(task => task.id !== taskId));
+      // If the deleted task was selected, clear selection
+      if (selectedTaskId === taskId) {
+        setSelectedTaskId(null);
+        setSelectedTask(null);
+      }
+    } catch (err) {
+      console.error('Failed to delete task:', err);
+      setError('Failed to delete task: ' + (err.response?.data?.detail || err.message));
+    }
+  };
+
   // Load tasks on initial mount and auto-select first task
   useEffect(() => {
     fetchTasks();
@@ -177,7 +194,7 @@ function App() {
             </div>
             {/* CENTER: Task Detail */}
             <div className="w-full lg:w-[420px] shrink-0 flex flex-col gap-space-md sticky top-0">
-              <CenterMainView selectedTask={selectedTask} />
+              <CenterMainView selectedTask={selectedTask} deleteTask={deleteTask} />
             </div>
             {/* RIGHT: AI Analysis & Detailed Inspector Terminal */}
             <div className="w-full lg:w-[420px] shrink-0 flex flex-col gap-space-md sticky top-0">

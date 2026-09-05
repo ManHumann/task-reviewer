@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority }) => {
+const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority, deleteTask }) => {
   if (!selectedTask) {
     return (
       <div className="w-full lg:w-[420px] shrink-0 flex flex-col gap-space-md sticky top-0">
@@ -46,9 +46,9 @@ const CenterMainView = ({ selectedTask, onUpdateTaskStatus, onUpdateTaskPriority
         <div className="task-actions flex justify-end space-x-4">
           <button
             onClick={() => {
-              onUpdateTaskStatus(selectedTask.id, 'COMPLETED');
+              deleteTask(selectedTask.id);
             }}
-            className="px-4 py-2 bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-container shadow-sm transition-all"
+            className="px-4 py-2 bg-error text-on-error font-body-sm text-body-sm font-semibold hover:bg-error-container shadow-sm transition-all"
           >
             Complete Task
           </button>

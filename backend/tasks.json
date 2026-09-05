@@ -1,13 +1,5 @@
 [
   {
-    "id": "1",
-    "title": "Fix login issue",
-    "description": "Users unable to login after password reset",
-    "priority": "HIGH",
-    "status": "COMPLETED",
-    "createdAt": "2026-09-03T11:37:15.130199"
-  },
-  {
     "id": "2",
     "title": "Update documentation",
     "description": "API documentation needs updating for new endpoints",
@@ -38,14 +30,6 @@
     "priority": "HIGH",
     "status": "NEW",
     "createdAt": "2026-09-03T22:14:18.001054"
-  },
-  {
-    "id": "1788453650215",
-    "title": "Test Task from API",
-    "description": "Test Description",
-    "priority": "HIGH",
-    "status": "IN PROGRESS",
-    "createdAt": "2026-09-03T22:25:50.215311"
   },
   {
     "id": "1788453662419",
