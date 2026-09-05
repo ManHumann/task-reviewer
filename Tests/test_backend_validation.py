@@ -37,13 +37,13 @@ with open(temp_file.name, 'w') as f:
     json.dump(sample_tasks, f)
 
 # Override the DATA_FILE in the services module before importing
-sys.path.insert(0, 'to-do-app/backend')
+sys.path.insert(0, 'task-reviewer/backend')
 import app.services as services
 original_data_file = services.DATA_FILE
 services.DATA_FILE = temp_file.name
 
 # Import the app from the correct location
-sys.path.insert(0, 'to-do-app/backend')
+sys.path.insert(0, 'task-reviewer/backend')
 from app.main import app
 client = TestClient(app)
 
