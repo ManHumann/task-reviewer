@@ -134,6 +134,15 @@ echo "🛑 Servers stopped"
 - In the task card, the "Complete Task" button in red indicates deletion of the task.
 - Task ID are time stamp based , suitable for simple JSON storage space.
 
+| Frontend Request | Backend Handler |
+|---|---|
+| `GET /api/tasks` | `@router.get("/tasks")` |
+| `POST /api/tasks` | `@router.post("/tasks")` |
+| `PATCH /api/tasks/{id}/status` | `@router.patch("/tasks/{task_id}/status")` |
+| `PATCH /api/tasks/{id}/priority` | `@router.patch("/tasks/{task_id}/priority")` |
+| `POST /api/tasks/{id}/analyse` | `@router.post("/tasks/{task_id}/analyse")` |
+| `DELETE /api/tasks/{id}` | `@router.delete("/tasks/{task_id}")` |
+
 
 ## What I would improve if I had more time.
 
