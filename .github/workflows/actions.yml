@@ -1,0 +1,37 @@
+name: Task-Reviewer Image
+
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup docker login
+        uses: docker/login-actions@v3
+        with:
+          username: ${{ secrets.USERNAME }}
+          password: ${{secrets.PASSWORD }}
+
+      - name: Build Backend Image
+        run: |
+          docker build -t ${{ secrets.USERNAME }}/task-reviewer-backend:latest ./backend
+
+      - name: Build Frontend mage
+        run: |
+          docker build -t ${{ secrets.USERNAME }}/task-reviewer-frontend:latest ./frontend
+
+      - name: Push Backend Image
+        run: |
+          docker push $ {{ secrets.USERNAME }}/task-reviewer-backend:latest
+
+      - name: Push Fronetend Image
+        run: |
+          docker push ${{ secrets.USERNAME }}/task-reviewer-frontend:latest
+
+  deploy: 
