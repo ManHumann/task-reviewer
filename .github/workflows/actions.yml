@@ -33,5 +33,3 @@ jobs:
       - name: Push Fronetend Image
         run: |
           docker push ${{ secrets.USERNAME }}/task-reviewer-frontend:latest
-
-  deploy: 
