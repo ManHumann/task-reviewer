@@ -19,7 +19,7 @@
     "id": "1788504807034",
     "title": "Incorrect Phone Number",
     "description": "Customer has not entered 10 digit mobile number ",
-    "priority": "HIGH",
+    "priority": "MEDIUM",
     "status": "NEW",
     "createdAt": "2026-09-04T12:38:27.034465"
   },
