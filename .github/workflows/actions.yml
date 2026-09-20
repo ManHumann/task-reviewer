@@ -19,7 +19,8 @@ jobs:
       - name: Install ruff
         run: pip install ruff
       
-      - name: ruff check ./backend
+      - name: Run ruff
+        run: ruff check ./backend
 
   tests:
     needs: lint
