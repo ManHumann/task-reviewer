@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "title": "Fix login issue",
+    "description": "Users unable to login after password reset",
+    "priority": "HIGH",
+    "status": "COMPLETED",
+    "createdAt": "2026-09-20T06:42:53.451488+00:00"
+  },
+  {
+    "id": "2",
+    "title": "Update documentation",
+    "description": "API documentation needs updating for new endpoints",
+    "priority": "MEDIUM",
+    "status": "NEW",
+    "createdAt": "2026-09-20T06:42:53.451508+00:00"
+  },
+  {
+    "id": "3",
+    "title": "Database optimization",
+    "description": "Optimize slow queries in user service",
+    "priority": "MEDIUM",
+    "status": "IN PROGRESS",
+    "createdAt": "2026-09-20T06:42:53.451514+00:00"
+  },
+  {
+    "id": "4",
+    "title": "Refactor legacy module",
+    "description": "Refactor the billing module for better performance",
+    "priority": "LOW",
+    "status": "COMPLETED",
+    "createdAt": "2026-09-20T06:42:53.451517+00:00"
+  }
+]

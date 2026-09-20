@@ -1,16 +1,20 @@
-from fastapi import APIRouter, HTTPException
-from typing import List
-from datetime import datetime
-from .schemas import Task, TaskCreate, TaskUpdate, PriorityUpdate, TaskAnalysis
-from .services import (
-    load_tasks, save_tasks, validate_task_status, validate_task_priority,
-    _sample_tasks
-)
-from google import genai
+import json
 import os
 import re
-import json
+from datetime import datetime, timezone
+
 from dotenv import load_dotenv
+from fastapi import APIRouter, HTTPException
+from google import genai
+
+from .schemas import PriorityUpdate, Task, TaskAnalysis, TaskCreate, TaskUpdate
+from .services import (
+    _sample_tasks,
+    load_tasks,
+    save_tasks,
+    validate_task_priority,
+    validate_task_status,
+)
 
 # Load environment variables
 load_dotenv()
@@ -21,7 +25,7 @@ router = APIRouter()
 api_key = os.getenv("GEMINI_API_KEY")
 genai_client = genai.Client(api_key=api_key) if api_key else None
 
-@router.get("/tasks", response_model=List[Task])
+@router.get("/tasks", response_model=list[Task])
 async def get_tasks():
     """Get all tasks"""
     tasks = load_tasks()
@@ -42,7 +46,7 @@ async def create_task(task_create: TaskCreate):
     tasks = load_tasks()
 
     # Generate a new ID (simple approach: use timestamp)
-    new_id = str(int(datetime.now().timestamp() * 1000))
+    new_id = str(int(datetime.now(timezone.utc).timestamp() * 1000))
 
     # Create the task object
     new_task = Task(
@@ -51,7 +55,7 @@ async def create_task(task_create: TaskCreate):
         description=task_create.description,
         priority=task_create.priority,
         status="NEW",  # Default status for new tasks
-        createdAt=datetime.now().isoformat()
+        createdAt=datetime.now(timezone.utc).isoformat()
     )
 
     tasks.append(new_task)
@@ -166,7 +170,7 @@ async def analyse_task(task_id: str):
             recommendedAction="Review the task details and determine appropriate action"
         )
 
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         error_str = str(e)
         if "503 UNAVAILABLE" in error_str:
             raise HTTPException(
@@ -184,7 +188,7 @@ async def analyse_task(task_id: str):
         else:
             raise HTTPException(
                 status_code=500,
-                detail=f"AI analysis failed: {str(e)}"
+                detail=f"AI analysis failed: {e!s}"
             )
 
 
