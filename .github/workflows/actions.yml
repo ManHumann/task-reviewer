@@ -28,7 +28,7 @@ jobs:
 
       - name: Push Backend Image
         run: |
-          docker push $ {{ secrets.DOCKER_USERNAME }}/task-reviewer-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/task-reviewer-backend:latest
 
       - name: Push Fronetend Image
         run: |
