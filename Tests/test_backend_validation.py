@@ -123,6 +123,20 @@ def test_task_not_found():
     assert response.status_code == 404
     assert "Task not found" in response.json()["detail"]
 
+def test_created_task_timestamp_is_timezone_aware():
+    """Test that created tasks use timezone-aware ISO timestamps"""
+    response = client.post(
+        "/api/tasks",
+        json={
+            "title": "Timezone test task",
+            "description": "Ensure createdAt contains timezone information",
+            "priority": "LOW",
+        },
+    )
+    assert response.status_code == 200
+    created_at = response.json()["createdAt"]
+    assert created_at.endswith("+00:00")
+
 def test_ai_analysis_endpoint_exists():
     """Test that the AI analysis endpoint exists and returns proper structure"""
     response = client.get("/api/tasks")
